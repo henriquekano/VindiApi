@@ -1,0 +1,5 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+fine_user:
+  nome: Fine User
+  email: email@somewhere.ru
