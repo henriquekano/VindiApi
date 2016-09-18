@@ -14,7 +14,7 @@ class Api::V1::UsersController < Api::ApiController
 
   def create
     new_user = User.new(email: user_params_insert[:email], nome: user_params_insert[:nome])
-    service_response = search_cep(user_params_insert[:endereco][:cep])
+    service_response = search_cep(user_params_insert[:cep])
     new_endereco = Endereco.new(service_response)
     new_user.endereco = new_endereco
     respond_to do |format|
@@ -40,7 +40,7 @@ class Api::V1::UsersController < Api::ApiController
   def update
     req_params = user_params_update
     if req_params.has_key? :cep
-      updated_endereco = Endereco.new(search_cep(user_params_update[:endereco][:cep]))
+      updated_endereco = Endereco.new(search_cep(user_params_update[:cep]))
       @user.endereco = updated_endereco
     end
     if req_params.has_key? :email
@@ -62,13 +62,13 @@ class Api::V1::UsersController < Api::ApiController
     def user_params_insert
       params
         .require(:user)
-        .permit(:email, :nome, {:endereco => :cep}) 
+        .permit(:email, :nome, :cep) 
     end
 
     def user_params_update
       params
         .require(:user)
-        .permit(:email, :nome, {:endereco => :cep}) 
+        .permit(:email, :nome, :cep) 
     end
 
     def user_params_delete_and_show
@@ -77,13 +77,7 @@ class Api::V1::UsersController < Api::ApiController
     end
 
     def find_user
-      begin
-        @user = User.find(user_params_delete_and_show)
-      rescue ActiveRecord::RecordNotFound => e
-        respond_to do |format|
-          format.json { render json: { error: [ id: e.message ] }, status: :not_found }
-        end
-      end
+      @user = User.find(user_params_delete_and_show)
     end
 
 end  

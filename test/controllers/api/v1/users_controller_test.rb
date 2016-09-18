@@ -20,7 +20,7 @@ class Api::V1::UsersControllerTest < ActionController::TestCase
   test "should create user" do
     new_email = "emailnovo@novo.new"
     assert_difference('User.count', 1) do
-      post :create, user: {nome: @user.nome, email: new_email, :endereco => { cep: @endereco.cep}}, format: :json
+      post :create, user: {nome: @user.nome, email: new_email, cep: @endereco.cep}, format: :json
     end
     body = JSON.parse(response.body)
     assert_response :created
