@@ -1,3 +1,6 @@
+#Environment
+db: Sqlite, os: windows 7, ruby: 2.2.4p230, rails: 4.2.5.1
+
 #Tarefas:
 1. Geração do projeto em modo api (rails new VindiApi)
 2. Criação dos models (User e Endereços)
