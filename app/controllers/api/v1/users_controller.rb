@@ -5,7 +5,7 @@ class Api::V1::UsersController < Api::ApiController
     user = User.find(params[:id])
     respond_to do |format|
       if user
-        format.json { render json: user, status: :created }
+        format.json { render json: user, status: :ok }
       else
         format.json { render json: user.errors, status: :unprocessable_entity }
       end
@@ -27,7 +27,7 @@ class Api::V1::UsersController < Api::ApiController
     user = User.find(params[:id])
     respond_to do |format|
       if user.destroy
-        format.json { head :no_content, status: :ok }
+        format.json { render :nothing => true, :status => :ok }
       else
         format.json { render json: user.errors, status: :unprocessable_entity }
       end

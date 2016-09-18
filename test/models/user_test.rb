@@ -2,8 +2,6 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
 
-  fixtures :all
-
   test "user should have a name" do
     user = users(:fine_user)
     user.nome = nil
