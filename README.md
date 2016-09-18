@@ -82,3 +82,41 @@ Response:
 ```
 
 ###Update
+>PATCH /api/v1/users/:id
+
+Request:
+```javascript
+{
+	"user":{
+		"nome": "nome!!!!!!!!", 
+		"email": "123@123.123", 
+		"endereco": {
+			"cep": "06350270" 
+		}
+	}
+}
+```
+
+Response:
+```javascript
+{
+    "id": 8,
+    "nome": "nome!!!!!!!!",
+    "email": "1243@123.123",
+    "endereco": {
+        "id": 11,
+        "cep": "02443-040",
+        "logradouro": "Avenida Lauzane Paulista",
+        "complemento": "",
+        "bairro": "Lauzane Paulista",
+        "localidade": "São Paulo",
+        "uf": "SP",
+        "unidade": "",
+        "ibge": "3550308",
+        "gia": "1004",
+        "created_at": "2016-09-18T19:14:15.375Z",
+        "updated_at": "2016-09-18T19:14:15.375Z",
+        "user_id": 8
+    }
+}
+```
