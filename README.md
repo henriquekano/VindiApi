@@ -1,5 +1,5 @@
 #Tarefas:
-1. Geração do projeto em modo api (rails new VindiApi --api)
+1. Geração do projeto em modo api (rails new VindiApi)
 2. Criação dos models (User e Endereços)
 3. Teste dos models (validações)
 4. Criação do ApiController
