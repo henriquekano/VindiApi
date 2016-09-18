@@ -3,3 +3,9 @@
 fine_user:
   nome: Fine User
   email: email@somewhere.ru
+  endereco_id: 1
+
+other_fine_user:
+  nome: Fine user 2
+  email: email@somewhere.ru2
+  endereco_id: 1

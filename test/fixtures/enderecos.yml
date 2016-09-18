@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+fine_endereco:
+  id: 1
+  cep: 06350270
+  logradouro: Rua ouro preto
+  complemento: Complemento
+  bairro: Vila Diva
+  localidade: Localidade
+  uf: Sao Paulo
+  unidade: Unidade
+  ibge: ibge
+  gia: gia

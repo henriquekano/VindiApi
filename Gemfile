@@ -23,6 +23,7 @@ gem 'responders', '~> 2.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.0'
 gem 'active_model_serializers', '~> 0.10.0.rc2'
+gem 'httparty'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
@@ -38,9 +39,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'minitest'
-  gem "rack-test", require: "rack/test"
-  gem 'database_cleaner'
+  gem 'webmock'
 end
 
 group :development do
