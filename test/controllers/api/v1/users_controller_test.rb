@@ -9,7 +9,7 @@ class Api::V1::UsersControllerTest < ActionController::TestCase
     WebMock
       .stub_request(:get, /https:\/\/viacep\.com\.br\/ws\/[0-9]+\/json/)
       .with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'})
-      .to_return(status: 200, headers: {content_type: 'application/json'}, body: "{\"cep\": \"01001-000\", \"logradouro\": \"Praça da Sé\", \"complemento\": \"lado ímpar\", \"bairro\": \"Sé\", \"localidade\": \"São Paulo\", \"uf\": \"SP\", \"unidade\": \"\", \"ibge\": \"3550308\", \"gia\": \"1004\"}")
+      .to_return(status: 200, headers: {content_type: 'application/json'}, body: @endereco.to_json(except: [:id, :created_at, :updated_at, :user_id]))
   end
 
   teardown do

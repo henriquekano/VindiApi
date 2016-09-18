@@ -1,14 +1,13 @@
 class Api::V1::UsersController < Api::ApiController
   respond_to :json
-  before_action :find_user, only: [:show, :destroy]
+  before_action :find_user, only: [:show, :destroy, :update]
 
   def show
-    user = User.find(user_params_delete_and_show)
     respond_to do |format|
-      if user
-        format.json { render json: user, status: :ok }
+      if @user
+        format.json { render json: @user, status: :ok }
       else
-        format.json { render json: user.errors, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -29,34 +28,32 @@ class Api::V1::UsersController < Api::ApiController
   end
 
   def destroy
-    user = User.find(user_params_delete_and_show)
     respond_to do |format|
-      if user.destroy
+      if @user.destroy
         format.json { render :nothing => true, :status => :ok }
       else
-        format.json { render json: user.errors, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def update
-    updated_user = User.find(params[:id])
     req_params = user_params_update
     if req_params.has_key? :cep
       updated_endereco = Endereco.new(search_cep(user_params_update[:endereco][:cep]))
-      updated_user.endereco = updated_endereco
+      @user.endereco = updated_endereco
     end
     if req_params.has_key? :email
-      updated_user.email = req_params[:email]
+      @user.email = req_params[:email]
     end
     if req_params.has_key? :nome
-      updated_user.nome = req_params[:nome]
+      @user.nome = req_params[:nome]
     end
     respond_to do |format|
-      if updated_user.save
-        format.json { render json: updated_user, :status => :ok }
+      if @user.save
+        format.json { render json: @user, :status => :ok }
       else
-        format.json { render json: updated_user.errors, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -81,7 +78,7 @@ class Api::V1::UsersController < Api::ApiController
 
     def find_user
       begin
-        user = User.find(user_params_delete_and_show)
+        @user = User.find(user_params_delete_and_show)
       rescue ActiveRecord::RecordNotFound => e
         respond_to do |format|
           format.json { render json: { error: [ id: e.message ] }, status: :not_found }
