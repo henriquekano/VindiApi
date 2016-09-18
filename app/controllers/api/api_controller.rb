@@ -11,10 +11,4 @@ class Api::ApiController < ApplicationController
 		end
 	end
 
-	def handle_cep_webservice_error(response)
-      respond_to do |format|
-        format.json { render json: { error: { cep: "invalid format" } }, :status => :ok }
-      end
-   	end
-
 end
